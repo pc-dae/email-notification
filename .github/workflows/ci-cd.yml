@@ -17,5 +17,3 @@ jobs:
     needs: [ export-variables ]
     uses: ./.github/workflows/validate-build-client.yml
     secrets: inherit
-
-

@@ -21,7 +21,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Run maven clean build and package
-        run: |.
+        run: |
           if [ "${GITHUB_REF_NAME}" != main ]; then # Pull Request
             export BRANCH="${GITHUB_HEAD_REF}"
           else # merge request commit
