@@ -25,5 +25,4 @@ jobs:
 
       - name: Build Client
         uses: ./.github/workflows/validate-build-client.yml
-        with:
-          inherit: secrets
+        inherit: secrets
