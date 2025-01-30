@@ -23,6 +23,10 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      - name: check
+        run: |
+          ls -l .github/workflows
+
       - name: Build Client
         uses: ./.github/workflows/validate-build-client.yml
 
