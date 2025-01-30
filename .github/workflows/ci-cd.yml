@@ -23,13 +23,21 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: check
+      - name: Get Branch Name
         run: |
           pwd
           ls -l .github/workflows
-
-    validate-build:
+          if [ "${GITHUB_REF_NAME}" != main ]; then # Pull Request
+            export BRANCH="${GITHUB_HEAD_REF}"
+          else # merge request commit
+            export BRANCH="main"
+          fi
+          echo "BRANCH=${BRANCH}" >> $GITHUB_ENV
+  
+  validate-build:
     runs-on: [ ubuntu-latest ]
       - name: Build Client
         uses: ./.github/workflows/validate-build-client.yml
+        with:
+          branch: ${{ env.BRANCH }}
 

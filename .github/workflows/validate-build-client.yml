@@ -7,13 +7,6 @@ jobs:
     runs-on: [ ubuntu-latest ]
 
     steps:
-      - name: Checkout latest code for the ref ${{ github.ref }}
-        uses: actions/checkout@v4
-        with:
-          clean: true
-          fetch-depth: 0
-          persist-credentials: false
-
       - name: Initialize SDK for Java
         uses: actions/setup-java@v3
         with:
@@ -22,12 +15,6 @@ jobs:
 
       - name: Run maven clean build and package
         run: |
-          if [ "${GITHUB_REF_NAME}" != main ]; then # Pull Request
-            export BRANCH="${GITHUB_HEAD_REF}"
-          else # merge request commit
-            export BRANCH="main"
-          fi
-          echo "BRANCH=${BRANCH}"
           ./mvnw -Dbranch_version=$BRANCH clean verify package
 
       - name: Verify the build
