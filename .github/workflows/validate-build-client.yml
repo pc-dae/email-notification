@@ -15,6 +15,13 @@ jobs:
     runs-on: [ ubuntu-latest ]
 
     steps:
+      - name: Checkout latest code for the ref ${{ github.ref }}
+        uses: actions/checkout@v4
+        with:
+          clean: true
+          fetch-depth: 0
+          persist-credentials: false
+          
       - name: Initialize SDK for Java
         uses: actions/setup-java@v3
         with:
