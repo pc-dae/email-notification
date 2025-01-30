@@ -51,7 +51,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <classpathPrefix>dependancy/</classpathPrefix>
+                            <classpathPrefix>dependency/</classpathPrefix>
                             <mainClass>com.tesco.notification.Client</mainClass>
                         </manifest>
                     </archive>
