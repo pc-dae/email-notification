@@ -37,5 +37,5 @@ jobs:
   validate-build:
     uses: ./.github/workflows/validate-build-client.yml
     with:
-      branch: ${{ env.BRANCH }}
+      branch: ${BRANCH}
 
