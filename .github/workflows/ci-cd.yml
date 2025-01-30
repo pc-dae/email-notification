@@ -33,8 +33,8 @@ jobs:
             export BRANCH="main"
           fi
           echo "BRANCH=${BRANCH}" >> $GITHUB_ENV
-        outputs:
-          BRANCH: ${{ steps.get-branch-name.outputs.BRANCH }}
+    outputs:
+      BRANCH: ${{ steps.get-branch-name.outputs.BRANCH }}
   
   validate-build:
     needs: [ checkout-code ]
