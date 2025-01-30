@@ -16,6 +16,13 @@ jobs:
     runs-on: [ ubuntu-latest ]
 
     steps:
+      - name: Checkout latest code for the ref ${{ github.ref }}
+        uses: actions/checkout@v4
+        with:
+          clean: true
+          fetch-depth: 0
+          persist-credentials: false
+
       - name: Build Client
         uses: ./.github/workflows/validate-build-client.yml
         with:
