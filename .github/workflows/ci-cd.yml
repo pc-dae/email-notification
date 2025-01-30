@@ -33,13 +33,11 @@ jobs:
             export BRANCH="main"
           fi
           echo "BRANCH=${BRANCH}" >> $GITHUB_ENV
-    outputs:
-      BRANCH: ${{ steps.get-branch-name.outputs.BRANCH }}
   
   validate-build:
     needs: [ checkout-code ]
     uses: ./.github/workflows/validate-build-client.yml
     secrets: inherit
     with:
-      branch: ${{ needs.checkout-code.outputs.BRANCH }}
+      branch: ${{ GITHUB_ENV.BRANCH }}
 
