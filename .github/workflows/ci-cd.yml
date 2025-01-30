@@ -41,5 +41,5 @@ jobs:
     uses: ./.github/workflows/validate-build-client.yml
     secrets: inherit
     with:
-      service_name: ${{ needs.checkout-code.outputs.BRANCH }}
+      branch: ${{ needs.checkout-code.outputs.BRANCH }}
 

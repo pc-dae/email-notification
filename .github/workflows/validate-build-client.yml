@@ -1,6 +1,14 @@
 name: validate-build
 on:
   workflow_call:
+    inputs:
+      branch:
+        required: true
+        type: string
+
+
+env:
+  BRANCH: ${{ inputs.branch }}
 
 jobs:
   validate-and-build:
