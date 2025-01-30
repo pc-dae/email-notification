@@ -16,4 +16,4 @@ jobs:
   validate-build:
     runs-on: [ ubuntu-latest ]
     uses: ./.github/workflows/validate-build-client.yml
-    secrets: inherit
+      secrets: inherit
