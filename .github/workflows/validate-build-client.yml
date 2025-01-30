@@ -32,3 +32,7 @@ jobs:
         run: |
           ./mvnw -Dbranch_version=$VERSION clean verify package
 
+      - name: Verify the build
+        run: |
+          ls -l target
+          java -jar target/email-notification-$VERSION.jar --input data/email1.mustache --data data/data.json --output data/out.json
