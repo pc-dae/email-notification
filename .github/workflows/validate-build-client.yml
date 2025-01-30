@@ -2,9 +2,9 @@ name: validate-build
 on:
   workflow_call:
     inputs:
-      service_name:
+      version:
         type: string
-        description: Service name
+        description: client version
         required: true
 
 env:
@@ -12,7 +12,7 @@ env:
 
 jobs:
   validate-and-build:
-    runs-on: [ naas-runner ]
+    runs-on: [ ubuntu-latest ]
 
     steps:
       - name: Checkout latest code for the ref ${{ github.ref }}
