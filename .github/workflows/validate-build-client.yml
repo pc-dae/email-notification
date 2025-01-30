@@ -35,4 +35,5 @@ jobs:
       - name: Verify the build
         run: |
           ls -l target
+          find . -name "*.jar"
           java -jar target/email-notification-${{ env.BRANCH }}.jar --input data/email1.mustache --data data/data.json --output data/out.json

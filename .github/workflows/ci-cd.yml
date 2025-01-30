@@ -24,7 +24,6 @@ jobs:
       - name: Exporting variables
         run: echo exporting environment variables to be used in reusable jobs.
 
-  
   validate-build-client:
     needs: [ export-variables ]
     uses: ./.github/workflows/validate-build-client.yml
