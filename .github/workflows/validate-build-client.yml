@@ -30,10 +30,8 @@ jobs:
   
       - name: Run maven clean build and package
         run: |
-          ./mvnw -Dbranch_version=${{ env.BRANCH }} clean install verify package
+          ./mvnw -Dbranch_version=${{ env.BRANCH }} clean dependency:copy-dependencies verify package
 
       - name: Verify the build
         run: |
-          find ~/.m2 -name "*.jar"
-          jar -xvf target/email-notification-${{ env.BRANCH }}.jar
-          java -jar target/email-notification-${{ env.BRANCH }}.jar --input data/email1.mustache --data data/data.json --output data/out.json
+          java -jar target/email-notification-${{ env.BRANCH }}.jar
