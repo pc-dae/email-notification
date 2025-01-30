@@ -30,9 +30,9 @@ jobs:
 
       - name: Run maven clean build and package
         run: |
-          ./mvnw -Dbranch_version=$BRANCH clean verify package
+          ./mvnw -Dbranch_version=${{ env.BRANCH }} clean verify package
 
       - name: Verify the build
         run: |
           ls -l target
-          java -jar target/email-notification-$BRANCH.jar --input data/email1.mustache --data data/data.json --output data/out.json
+          java -jar target/email-notification-${{ env.BRANCH }}.jar --input data/email1.mustache --data data/data.json --output data/out.json

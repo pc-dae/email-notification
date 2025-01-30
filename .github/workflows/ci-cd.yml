@@ -7,37 +7,28 @@ on:
     branches:
       - '*'
 
+env:
+  BRANCH: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main'  && 'main' || github.head_ref }}
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.type }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  checkout-code:
+  export-variables:
     runs-on: [ ubuntu-latest ]
+    outputs:
+      BRANCH: ${{ env.BRANCH }}
 
     steps:
-      - name: Checkout latest code for the ref ${{ github.ref }}
-        uses: actions/checkout@v4
-        with:
-          clean: true
-          fetch-depth: 0
-          persist-credentials: false
+      - name: Exporting variables
+        run: echo exporting environment variables to be used in reusable jobs.
 
-      - name: Get Branch Name
-        run: |
-          pwd
-          ls -l .github/workflows
-          if [ "${GITHUB_REF_NAME}" != main ]; then # Pull Request
-            export BRANCH="${GITHUB_HEAD_REF}"
-          else # merge request commit
-            export BRANCH="main"
-          fi
-          echo "BRANCH=${BRANCH}" >> $GITHUB_ENV
   
-  validate-build:
-    needs: [ checkout-code ]
+  validate-build-client:
+    needs: [ export-variables ]
     uses: ./.github/workflows/validate-build-client.yml
     secrets: inherit
     with:
-      branch: ${{ GITHUB_ENV.BRANCH }}
+      branch: ${{ needs.export-variables.outputs.BRANCH }}
 
