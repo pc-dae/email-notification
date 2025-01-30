@@ -25,6 +25,7 @@ jobs:
 
       - name: check
         run: |
+          pwd
           ls -l .github/workflows
 
       - name: Build Client
