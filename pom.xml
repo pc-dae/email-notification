@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>mn.dae.pc.jjson</groupId>
-    <artifactId>email-notifications</artifactId>
+    <artifactId>email-notification</artifactId>
     <version>${branch_version}</version>
 
     <properties>
