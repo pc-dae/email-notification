@@ -34,7 +34,4 @@ jobs:
 
       - name: Verify the build
         run: |
-          ls -lR target
-          jar -xvf target/email-notification-${{ env.BRANCH }}.jar
-          cat META-INF/MANIFEST.MF
           java -jar target/email-notification-${{ env.BRANCH }}.jar
