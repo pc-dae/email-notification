@@ -52,7 +52,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>../libs/</classpathPrefix>
-                            <mainClass>com.tesco.notification.javaJson</mainClass>
+                            <mainClass>com.tesco.notification.Client</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
