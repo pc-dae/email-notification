@@ -1,14 +1,6 @@
 name: validate-build
 on:
   workflow_call:
-    inputs:
-      version:
-        type: string
-        description: client version
-        required: true
-
-env:
-  VERSION: ${{ inputs.version }}
 
 jobs:
   validate-and-build:
@@ -29,11 +21,16 @@ jobs:
           distribution: 'temurin'
 
       - name: Run maven clean build and package
-        run: |
-          echo "VERSION=${VERSION}"
-          ./mvnw -Dbranch_version=$VERSION clean verify package
+        run: |.
+          if [ "${GITHUB_REF_NAME}" != main ]; then # Pull Request
+            export BRANCH="${GITHUB_HEAD_REF}"
+          else # merge request commit
+            export BRANCH="main"
+          fi
+          echo "BRANCH=${BRANCH}"
+          ./mvnw -Dbranch_version=$BRANCH clean verify package
 
       - name: Verify the build
         run: |
           ls -l target
-          java -jar target/email-notification-$VERSION.jar --input data/email1.mustache --data data/data.json --output data/out.json
+          java -jar target/email-notification-$BRANCH.jar --input data/email1.mustache --data data/data.json --output data/out.json

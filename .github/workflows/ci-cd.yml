@@ -13,25 +13,9 @@ concurrency:
 
 jobs:
 
-  export-variables:
-    runs-on: [ ubuntu-latest ]
-    outputs:
-      VERSION: ${BRANCH}
-    steps:
-      - name: Exporting variables
-        run: |
-          echo exporting environment variables to be used in reusable jobs.
-          if [ "${GITHUB_REF_NAME}" != main ]; then # Pull Request
-            export BRANCH="${GITHUB_HEAD_REF}"
-          else # merge request commit
-            export BRANCH="main"
-          fi
-          echo "BRANCH=${BRANCH}"
-
   validate-build:
     needs: [ export-variables ]
     uses: ./.github/workflows/validate-build-client.yml
     secrets: inherit
-    with:
-      version: ${{ needs.export-variables.outputs.VERSION }}
+
 
