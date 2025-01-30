@@ -1,4 +1,4 @@
-package mn.dae.pc.jjson.data;
+package com.tesco.notification.data;
 
 import java.util.Map;
 

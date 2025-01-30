@@ -1,16 +1,16 @@
-package mn.dae.pc.jjson;
+package com.tesco.notification;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import mn.dae.pc.jjson.utils.GetData;
-import mn.dae.pc.jjson.utils.Render;
+import com.tesco.notification.utils.GetData;
+import com.tesco.notification.utils.Render;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-import mn.dae.pc.jjson.utils.StringFile;
-import mn.dae.pc.jjson.data.Email;
+import com.tesco.notification.utils.StringFile;
+import com.tesco.notification.data.Email;
 
-public class javaJson {
+public class Client {
     private static final Render render = new Render();
     private static final GetData getData = new GetData();
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package mn.dae.pc.jjson.utils;
+package com.tesco.notification.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

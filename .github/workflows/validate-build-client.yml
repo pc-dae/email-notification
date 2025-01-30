@@ -30,7 +30,7 @@ jobs:
 
       - name: Run maven clean build and package
         run: |
-          ./mvnw -Dbranch_version=${{ env.BRANCH }} clean verify package
+          ./mvnw -Dbranch_version=${{ env.BRANCH }} clean install verify package
 
       - name: Verify the build
         run: |

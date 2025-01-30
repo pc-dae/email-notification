@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>mn.dae.pc.jjson</groupId>
+    <groupId>com.tesco.notification</groupId>
     <artifactId>email-notification</artifactId>
     <version>${branch_version}</version>
 
@@ -52,7 +52,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>../libs/</classpathPrefix>
-                            <mainClass>mn.dae.pc.jjson.javaJson</mainClass>
+                            <mainClass>com.tesco.notification.javaJson</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

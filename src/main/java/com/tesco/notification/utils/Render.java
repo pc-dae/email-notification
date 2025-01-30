@@ -1,4 +1,4 @@
-package mn.dae.pc.jjson.utils;
+package com.tesco.notification.utils;
 
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
