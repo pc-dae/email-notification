@@ -1,0 +1,34 @@
+name: validate-build
+on:
+  workflow_call:
+    inputs:
+      service_name:
+        type: string
+        description: Service name
+        required: true
+
+env:
+  VERSION: ${{ inputs.version }}
+
+jobs:
+  validate-and-build:
+    runs-on: [ naas-runner ]
+
+    steps:
+      - name: Checkout latest code for the ref ${{ github.ref }}
+        uses: actions/checkout@v4
+        with:
+          clean: true
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Initialize SDK for Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '23'
+          distribution: 'temurin'
+
+      - name: Run maven clean build and package
+        run: |
+          ./mvnw -Dbranch_version=$VERSION clean verify package
+

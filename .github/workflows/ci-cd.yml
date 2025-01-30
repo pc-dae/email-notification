@@ -1,0 +1,35 @@
+name: LBaaS Orchestrator-CI/CD
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  push:
+    branches:
+      - '*'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.type }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+
+  export-variables:
+    runs-on: [ naas-runner ]
+    outputs:
+      VERSION: ${BRANCH}
+    steps:
+      - name: Exporting variables
+        run: |
+          echo exporting environment variables to be used in reusable jobs.
+          if [ "${GITHUB_REF_NAME}" != main ]; then # Pull Request
+            export BRANCH="${GITHUB_HEAD_REF}"
+          else # merge request commit
+            export BRANCH="main"
+          fi
+
+  validate-build:
+    needs: [ export-variables ]
+    uses: ./.github/workflows/validate-build-client.yml
+    secrets: inherit
+    with:
+      version: ${{ needs.export-variables.outputs.VERSION }}
+
