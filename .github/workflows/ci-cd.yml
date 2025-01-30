@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  validate-build:
+  checkout-code:
     runs-on: [ ubuntu-latest ]
 
     steps:
@@ -28,6 +28,8 @@ jobs:
           pwd
           ls -l .github/workflows
 
+    validate-build:
+    runs-on: [ ubuntu-latest ]
       - name: Build Client
         uses: ./.github/workflows/validate-build-client.yml
 
