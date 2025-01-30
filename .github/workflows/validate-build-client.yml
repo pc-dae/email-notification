@@ -28,6 +28,14 @@ jobs:
           java-version: '23'
           distribution: 'temurin'
 
+      - name: Cache Maven Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+  
       - name: Run maven clean build and package
         run: |
           ./mvnw -Dbranch_version=${{ env.BRANCH }} clean install verify package
@@ -35,5 +43,5 @@ jobs:
       - name: Verify the build
         run: |
           ls -l target
-          find . -name "*.jar"
+          find $HOME -name "*.jar"
           java -jar target/email-notification-${{ env.BRANCH }}.jar --input data/email1.mustache --data data/data.json --output data/out.json

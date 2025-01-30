@@ -7,13 +7,11 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.tesco.notification.utils.StringFile;
-import com.tesco.notification.data.Email;
-
 public class Client {
     private static final Render render = new Render();
     private static final GetData getData = new GetData();
     public static void main(String[] args) {
+        /*
         try {
             String inputFile = "test.html";
             String outputFile = "test.json";
@@ -66,5 +64,7 @@ public class Client {
         } catch (Exception e) {
             System.out.println("Error processing HTML: " + e.getMessage());
         }
+
+         */
     }
 }
