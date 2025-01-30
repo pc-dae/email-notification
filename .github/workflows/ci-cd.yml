@@ -26,6 +26,7 @@ jobs:
           else # merge request commit
             export BRANCH="main"
           fi
+          echo "BRANCH=${BRANCH}"
 
   validate-build:
     needs: [ export-variables ]

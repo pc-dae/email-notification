@@ -30,6 +30,7 @@ jobs:
 
       - name: Run maven clean build and package
         run: |
+          echo "VERSION=${VERSION}"
           ./mvnw -Dbranch_version=$VERSION clean verify package
 
       - name: Verify the build
